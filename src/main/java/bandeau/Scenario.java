@@ -38,11 +38,21 @@ public class Scenario {
      *
      * @param b le bandeau ou s'afficher.
      */
-    public void playOn(Bandeau b) {
-        for (ScenarioElement element : myElements) {
-            for (int repeats = 0; repeats < element.repeats; repeats++) {
-                element.effect.playOn(b);
-            }
-        }
+    public void playOn(SousBandeau b){
+        //On crée un thread
+        Thread t = new Thread(
+                () -> {
+                    //On bloque le bandeau au lancement du scénario
+                    b.verrouille();
+                    for (ScenarioElement element : myElements) {
+                        for (int repeats = 0; repeats < element.repeats; repeats++) {
+                            element.effect.playOn(b);
+                        }
+                    }
+                    //Apres avoir fini le scenario on deverrouille le bandeau
+                    b.deverrouille();
+                }
+        );
+        t.start();
     }
 }
