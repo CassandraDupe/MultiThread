@@ -22,7 +22,7 @@ public class ExerciceAvecThreads {
         System.out.println("CTRL-C pour terminer le programme");
         // On doit jouer le scénario en même temps sur les trois bandeaux
         s.playOn(b1);
-        s.addEffect(new TeleType("Je m'affiche caractère par caractère", 100), 1);
+        s.addEffect(new Rainbow("Comme c'est joli !", 30), 1);
         s.playOn(b2);
         s.playOn(b3);
         // On rejoue le scénario sur b1 quand le premier jeu est fini
